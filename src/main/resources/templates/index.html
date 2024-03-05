@@ -1,17 +1,21 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">\
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>홈페이지</title>
+
+    <th:block th:insert="~{fragments.html :: cdns}"></th:block>
 
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/index.css">
 
+    <script defer src="/js/index.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
 </head>
 <body>
-    <h1>안녕하세요.</h1>
+    <div id='calendar'></div>
 </body>
 </html>
