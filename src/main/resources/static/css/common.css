@@ -21,17 +21,6 @@ body {
     flex: 1;
 }
 
-.logo {
-    font-weight: 700;
-    font-size: 2rem;
-}
-
-.main-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-top: 5rem;
-}
-
 .horizontal {
     align-items: center;
     display: flex;
@@ -39,7 +28,6 @@ body {
     gap: 0.375rem;
     justify-content: flex-start;
 }
-
 
 .content-container-wrapper {
     display: flex;
@@ -50,6 +38,11 @@ body {
 .content-container {
     max-width: 1000px;
     width: 100%;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 2rem;
 }
 
 #header {
@@ -64,4 +57,28 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#main .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: 5rem;
+}
+
+#main .password-warning-container {
+    overflow: hidden;
+    max-height: 0;
+    transition-duration: 350ms;
+    transition-property: max-height;
+    transition-timing-function: ease;
+}
+
+#main .password-warning-container.visible {
+    max-height: 1.5rem;
 }

@@ -9,38 +9,69 @@
 
     <th:block th:insert="~{fragments.html :: cdns}"></th:block>
 
-    <link rel="stylesheet" href="/css/user/join.css">
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/user/join.css">
 
     <script defer src="/js/user/join.js"></script>
 </head>
 <body>
 
 <div id="loading">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADS0lEQVR4nO2Zv2sUURDHn4jGgAqCGDTYKkaxsFXQpIiNsdAillYKqfxVKUTRf0CNGgha+BOt/QViI7YRwu28N7Nv3hk9RUExaGFAMa7MHYG73NvLXe5ub0/uA9vNztvvzo99b1apDh06dKiVLGV2MsJLh/DDodYO4ahqN5iDzYzw3ZGOSq5FxLDW2xmD/dlMpkelAUZ9oUxE/gLw2Vtr1zLCsyLbX4xwWrUah3DTJ0Si5LNnhBse27+MwT7VShzCca8Qghc+eyb4FGN/WbWSycnJFYz6delD6RlnzI5UCclmMj1SlNZCXyUxDuFYIc3gfBiGvXG2DvU1X2pZY/Y2TQSjPuNI/y5a8CkirqnHp9zPCE+Ki90SnFTNwhEMyJsqb6v6WiP8h2GwzZpg0LmpDaqZONJX/bmsP6t2ggmueL8PCB9VO8EY9HtTi/RYs9cOw7DXYjAkz5DL5brrdsgEp6QYi9LqMQCsVk0CAFYywTgjzBVlwFcmPVy3cylGKUopTtVkmGA8ZpcwJ81HtQNhGPaWRKK8Nl+pdiBrggOxIgpp/VO1A4xBfyUhDuHLkhxPT0+vUgmSy+W6pbDjIwK3anL4FnErE9h8viI8jKJouUoIJj3srRPUH94Zs7FWZ/cWdIyDKkEcwYAUNiPMSjpJJGoWkQYhDSNrzBYmIAkxk36QZGo1haSL/b8giqJlsreSfRyTvs8El5LYSTQUIlovxe3ZlvyRCY1ql0j4RLiiy5IZachi1touObNXOocv2XchneK/5oWtyTd5hroXc6ifz8+pEHFTQxTM+yY9tpgQRzrKEuypfzGZ586H2QSDlWzfZzLr8nMu1BMO4Y4jGK00fXEId6sRYjEYql8ImRMiRiYfcvCJtQvNkfw8y3eWQLjuu5dRX6xKiI1/GQ0lL8J/LC7evT6S4i6+T1qsdCdXUQi8SUSEpJMvEt5cx+Bw9UNwnT+DsDG7Wjr7rWUebMmMSHdaGInERBSE6InqheiZOD/W2i5HwW7ZpMq/E5U0DuF21UIQZlVacQSj1QvRUyqtWAt9FacfpULOqTTDnr9Q5e1Xu2YO9xqCfOzkO1FJhMwCVNvsZE1wSFqstFIpbKkJRn029ZHo0KGDSj3/AAcfDPHBPCvgAAAAAElFTkSuQmCC" class="icon">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADS0lEQVR4nO2Zv2sUURDHn4jGgAqCGDTYKkaxsFXQpIiNsdAillYKqfxVKUTRf0CNGgha+BOt/QViI7YRwu28N7Nv3hk9RUExaGFAMa7MHYG73NvLXe5ub0/uA9vNztvvzo99b1apDh06dKiVLGV2MsJLh/DDodYO4ahqN5iDzYzw3ZGOSq5FxLDW2xmD/dlMpkelAUZ9oUxE/gLw2Vtr1zLCsyLbX4xwWrUah3DTJ0Si5LNnhBse27+MwT7VShzCca8Qghc+eyb4FGN/WbWSycnJFYz6delD6RlnzI5UCclmMj1SlNZCXyUxDuFYIc3gfBiGvXG2DvU1X2pZY/Y2TQSjPuNI/y5a8CkirqnHp9zPCE+Ki90SnFTNwhEMyJsqb6v6WiP8h2GwzZpg0LmpDaqZONJX/bmsP6t2ggmueL8PCB9VO8EY9HtTi/RYs9cOw7DXYjAkz5DL5brrdsgEp6QYi9LqMQCsVk0CAFYywTgjzBVlwFcmPVy3cylGKUopTtVkmGA8ZpcwJ81HtQNhGPaWRKK8Nl+pdiBrggOxIgpp/VO1A4xBfyUhDuHLkhxPT0+vUgmSy+W6pbDjIwK3anL4FnErE9h8viI8jKJouUoIJj3srRPUH94Zs7FWZ/cWdIyDKkEcwYAUNiPMSjpJJGoWkQYhDSNrzBYmIAkxk36QZGo1haSL/b8giqJlsreSfRyTvs8El5LYSTQUIlovxe3ZlvyRCY1ql0j4RLiiy5IZachi1touObNXOocv2XchneK/5oWtyTd5hroXc6ifz8+pEHFTQxTM+yY9tpgQRzrKEuypfzGZ586H2QSDlWzfZzLr8nMu1BMO4Y4jGK00fXEId6sRYjEYql8ImRMiRiYfcvCJtQvNkfw8y3eWQLjuu5dRX6xKiI1/GQ0lL8J/LC7evT6S4i6+T1qsdCdXUQi8SUSEpJMvEt5cx+Bw9UNwnT+DsDG7Wjr7rWUebMmMSHdaGInERBSE6InqheiZOD/W2i5HwW7ZpMq/E5U0DuF21UIQZlVacQSj1QvRUyqtWAt9FacfpULOqTTDnr9Q5e1Xu2YO9xqCfOzkO1FJhMwCVNvsZE1wSFqstFIpbKkJRn029ZHo0KGDSj3/AAcfDPHBPCvgAAAAAElFTkSuQmCC"
+         class="icon">
     <span class="text">잠시만 기다려 주세요...</span>
 </div>
 
 <th:block th:replace="~{fragments.html :: header}"></th:block>
 
 <main id="main" class="content-container-wrapper">
-    <h1 class="main-title">회원가입</h1>
-    <form id="joinForm">
+    <h1 class="title">회원가입</h1>
+    <form id="joinForm"
+          th:with="userRegex = ${T(com.example.todolist.regexes.UserRegex)}, emailAuthRegex = ${T(com.example.todolist.regexes.EmailAuthRegex)}">
         <input type="hidden" id="salt">
         <label>
-            <div class="text">이메일</div>
             <span class="horizontal">
-                <input type="email" maxlength="50" name="email" placeholder="이메일 (user@sample.com)" id="email" class="common-field">
+                <p class="text">이메일</p>
+                <p class="text warning" id="emailWarning"></p>
+            </span>
+            <span class="horizontal">
+                <input type="email" maxlength="50" name="email" placeholder="이메일 (user@sample.com)" id="email"
+                       class="common-field spring" th:regex="${userRegex.EMAIL.expression}">
                 <input type="button" value="인증번호 발송" id="emailSendBtn" class="common-btn">
             </span>
             <div class="email-code-container">
                 <span class="horizontal">
-                    <input type="number" maxlength="6" minlength="6" id="emailCode" placeholder="이메일 인증번호(숫자 6자)" class="common-field">
+                    <input type="number" maxlength="6" minlength="6" id="emailCode" placeholder="이메일 인증번호(숫자 6자)"
+                           class="common-field spring" th:regex="${emailAuthRegex.CODE.expression}">
                     <input type="button" value="인증번호 확인" id="codeVerifyBtn" class="common-btn">
                 </span>
             </div>
         </label>
-
+        <label>
+            <span class="horizontal">
+                <span class="text">이름</span>
+                <span class="text warning" id="nameWarning"></span>
+            </span>
+            <input class="common-field" maxlength="10" name="name" id="name" placeholder="이름" type="text"
+                   th:regex="${userRegex.NAME.expression}">
+            <div></div>
+        </label>
+        <label>
+            <span class="horizontal">
+                <p class="text">비밀번호</p>
+            </span>
+            <input class="common-field" maxlength="15" name="password" id="password"
+                   placeholder="비밀번호 (숫자, 특수문자를 포함한 8~15자)" type="password" th:regex="${userRegex.PASSWORD.expression}">
+            <div class="password-warning-container">
+                <span class="horizontal">
+                    <img id="x"
+                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAb0lEQVR4nM2SOwqAMAyGew09VKF/bqCTx9Lj2cSpo6BkE22hRpB+SyDvl3NNsIbQmezR+16AxMCYs6tegKR+2QRMNDCwb8BUo39wd6wOvLaoAUK0qCyNUkSAWYgOle4NbK3M1pnZuu349c7mD/udE6JZcC2qjxVoAAAAAElFTkSuQmCC">
+                    <img id="check" hidden
+                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAbElEQVR4nOWPsQ6AIAxE+SBHJuBa9Zv8Ulrd3eQvDIkuBhJYTIy3Nbl31zPmH2LxIwm0G6SVQIpEQtM7IKsPVZA3Hjg6W92oSCEGLidHZ7MhG7vA52tQzPcNDUfzRr6aIFiaGk0pQLB3g9/RCbHVP7qOWnl3AAAAAElFTkSuQmCC">
+                    <p class="text warning" id="passwordWarning">숫자, 특수문자를 포함한 8~15자</p>
+                </span>
+            </div>
+        </label>
         <input type="submit" value="회원가입" class="common-btn join-btn">
     </form>
 </main>

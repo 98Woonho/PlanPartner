@@ -1,16 +1,20 @@
 package com.example.todolist.service;
 
 import com.example.todolist.domain.dto.EmailAuthDto;
+import com.example.todolist.domain.dto.UserDto;
 import com.example.todolist.domain.entity.EmailAuth;
+import com.example.todolist.domain.entity.User;
 import com.example.todolist.domain.repository.EmailAuthRepository;
 import com.example.todolist.domain.repository.UserRepository;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.context.Context;
@@ -36,9 +40,12 @@ public class UserService {
     @Autowired
     private SpringTemplateEngine templateEngine;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Transactional(rollbackFor = Exception.class)
     public String sendEmail(EmailAuthDto emailAuthDto) throws NoSuchAlgorithmException, MessagingException {
-        if(userRepository.existsById(emailAuthDto.getEmail())) {
+        if (userRepository.existsById(emailAuthDto.getEmail())) {
             return "FAILURE_DUPLICATE_EMAIL";
         }
 
@@ -70,7 +77,7 @@ public class UserService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper mimemessageHelper = new MimeMessageHelper(message, false);
         mimemessageHelper.setTo(emailAuthDto.getEmail());
-        mimemessageHelper.setSubject("[Coremap] 회원가입 인증번호");
+        mimemessageHelper.setSubject("[PlanPartner] 회원가입 인증번호");
         mimemessageHelper.setText(textHtml, true);
         mailSender.send(message);
 
@@ -96,6 +103,36 @@ public class UserService {
         emailAuth.setIsVerified(true);
 
         emailAuthRepository.save(emailAuth);
+
+        return "SUCCESS";
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void join(UserDto userDto) {
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
+        User user = User.builder()
+                .email(userDto.getEmail())
+                .name(userDto.getName())
+                .password(userDto.getPassword())
+                .build();
+
+        userRepository.save(user);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public String login(HttpSession session, UserDto userDto) {
+        if (!userRepository.existsById(userDto.getEmail())) {
+            return "NOT_FOUND";
+        }
+
+        User user = userRepository.findById(userDto.getEmail()).get();
+
+        if (!passwordEncoder.matches(userDto.getPassword(), user.getPassword())) {
+            return "NOT_FOUND";
+        }
+
+        session.setAttribute("user", user);
 
         return "SUCCESS";
     }

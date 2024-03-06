@@ -1,8 +1,10 @@
 package com.example.todolist.controller;
 
 import com.example.todolist.domain.dto.EmailAuthDto;
+import com.example.todolist.domain.dto.UserDto;
 import com.example.todolist.service.UserService;
 import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,12 @@ public class UserController {
 
     @GetMapping("login")
     public void getLogin() {
+    }
 
+    @PostMapping("login")
+    @ResponseBody
+    public String postLogin(HttpSession session, UserDto userDto) {
+        return userService.login(session, userDto);
     }
 
     @GetMapping("join")
@@ -29,8 +36,8 @@ public class UserController {
     }
 
     @PostMapping("join")
-    public void postJoin(String email) {
-
+    public void postJoin(UserDto userDto) {
+        userService.join(userDto);
     }
 
     @PostMapping("sendEmail")
