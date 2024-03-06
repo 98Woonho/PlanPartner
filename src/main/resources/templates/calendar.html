@@ -5,21 +5,22 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>홈페이지</title>
+    <title>캘린더</title>
 
     <th:block th:insert="~{fragments.html :: cdns}"></th:block>
 
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/calendar.css">
 
-    <script defer src="/js/index.js"></script>
+    <script defer src="/js/calendar.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
 </head>
 <body>
 
-<th:block th:replace="~{fragments.html :: header}"></th:block>
-
 <main id="main" class="content-container-wrapper">
-    하이
+    <div class="content-container">
+        <div id='calendar'></div>
+    </div>
 </main>
 
 </body>
