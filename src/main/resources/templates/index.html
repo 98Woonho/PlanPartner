@@ -9,17 +9,42 @@
 
     <th:block th:insert="~{fragments.html :: cdns}"></th:block>
 
-    <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/index.css">
 
     <script defer src="/js/index.js"></script>
 </head>
 <body>
 
+<div id="scheduleAdd">
+    <form id="scheduleAddForm">
+
+    </form>
+</div>
+
 <th:block th:replace="~{fragments.html :: header}"></th:block>
 
 <main id="main" class="content-container-wrapper">
-    하이
+    <div th:if="${session.user == null}" class="content-container">
+        세션 없을 때
+    </div>
+    <div th:if="${session.user != null}" class="content-container">
+        <section class="main-section-1">
+            <div class="today-schedule-container">
+                <p class="text">오늘 일정</p>
+            </div>
+            <div class="button-container">
+                <a href="javascript:void(0)" onclick="scheduleAdd()">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAABLCAYAAAA4TnrqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA2UlEQVR4nO3cOwrCUBBA0Vm2y8lSXEj2ogSsJILXIkQ9B6Z51cslvyJkBgA4j8vMXHdmW+fJMjO3ndnWeSJWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViDWv8S6PDZ61KwvYq0H7+OjbyuuLzZ/+/HZjlusEWucWeMynJ+9Z3kantjyze9ZR1vEep9YgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgb8cAcCc3R0ZxuQG2qRgNwAAAABJRU5ErkJggg==">
+                </a>
+                일정 추가
+                <a href="/calendar">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAADiUlEQVR4nO2dTYhNYRjH/zHKxIqkKEOYLFwbFmzYzNZm7sZIOYobCxILUfJRmgUppVBqFCFRPhZWYrJgYTFEvpquYqHpJuUjDEan7kLTed6Zczr3Ps95zv9Xz+597vu87+98vO+5XwAhhBBCCCGEEEIIIURiO4B9CVFRnLKKUFNcq3vqAMYSIlKsKRJqimt1D4W0kG4AtZTREI7GgQyvlVcMCDU1MrxWPCfmTvUyR0QhUJdAIdCfeAqB/mRTCPQn2IWQUQDDQowKOSOBnFbHSI7jMCmkXoJ9SN3gONwMJHIyDjcDiZyMo9TPgOoUYgsKMUahhISWi15itEhCyhwRhUBdAoVAf+IpBPqTTSHQn2AXQrK89VkrWDSKJIQ7dSUoBDxDrFConXoZLlnvLArZKhT1Bv75YFHIDqGoF4GcvpQfMOsW2vcp9/HRopBdQlFDOV57owyXxXb08cmikL1CUY9LIOSrRSFHhKLuOhcyDcBfi0JOCUVddS5kjtBeXcgFoahzzoUssSrktlDUoUDOoPAOXFVoXxXaDyr2sdqqkKdCUVvgmw1WhXwWiuqBb/ZbFDIrUNRi+OasRSFrhIK+AJgC3zy0KGS3UNAj+GZqYFOoKuRShiWvB5YHZKgKeSsUtEloPx3Ac2F5GS8jpWdlSe2v5NhHXk+4VYUsDRQ0X8jpFdrHX5bpEHKeCTk7c+wjLTctCjkgFPMykHNNyDkttF8mtP8DYF5OfaSlc4L7h5qQJ0IxJ4T2MwF8E3LWCjlHhfb3cuwjLesnkKEipBJ40rlSyNkotH8fWCK/FnK25dhHWm5ZFCKtrl4Fcu4IOceF9quE9r8AzM6pj7QsAvDbmpCu5qQkFRLfVyQi4S3ShYGzsJYQ1Rz7SMvJSchou5Dzgd15/CjFK12B+5OakHWBe0d89Hjm+iRltE1IZ2Aj+APAAvilJ4WMtgk5EyjgGPwyt7lKMyVkT6DzuNgZ8EkHgAcpZbRcSG9zZyx1fsPA1wJqLYqLgXH/bC5k2iokvnZ+z3CElCEOanzY+r6BgY8ZjKHm57IoBPoy4ivGiuYBSyHQF7L5vysIhUBXxuFxl/S2C7ncol9iK2L0J8wPv0FlDAoxBoUYg0KMQSHGoBBjFEqIt2XvcELwF+VQjDB5hpQ5IgqBugQKgf7EUwj0J9u8kCx/CuY9ujWFEEIIIYQQQgghhBBCCCEE4/kHNDqb98XjReMAAAAASUVORK5CYII=">
+                </a>
+                캘린더
+            </div>
+        </section>
+    </div>
 </main>
 
 </body>

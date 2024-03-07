@@ -27,11 +27,14 @@
             </h1>
         </li>
         <li class="spring"></li>
-        <li>
+        <li th:if="${session.user == null}">
             <a href="/user/login">로그인</a>
         </li>
-        <li>
+        <li th:if="${session.user == null}">
             <a href="/user/join">회원가입</a>
+        </li>
+        <li th:if="${session.user != null}">
+            <a href="/user/logout">로그아웃</a>
         </li>
     </ul>
 </header>

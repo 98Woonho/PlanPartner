@@ -26,8 +26,8 @@ var calendar = new FullCalendar.Calendar(calendarEl, {
         },
         {
             title: 'Repeating Event',
-            start: '2024-03-06T16:00:00',
-            end: '2024-03-06T17:30:00'
+            start: '2024-03-07T16:00:00',
+            end: '2024-03-07T17:30:00'
         },
         {
             title: 'Repeating Event',

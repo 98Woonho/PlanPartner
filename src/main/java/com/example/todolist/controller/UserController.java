@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -28,6 +29,12 @@ public class UserController {
     @ResponseBody
     public String postLogin(HttpSession session, UserDto userDto) {
         return userService.login(session, userDto);
+    }
+
+    @GetMapping("logout")
+    public String getLogout(HttpSession session) {
+        session.setAttribute("user", null);
+        return "redirect:/";
     }
 
     @GetMapping("join")
