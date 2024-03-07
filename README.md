@@ -1,2 +1,2 @@
-# 간단한 반응형 todo-list
+# 간단한 todo-list
 제작 중...
