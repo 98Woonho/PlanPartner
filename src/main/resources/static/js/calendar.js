@@ -26,12 +26,12 @@ var calendar = new FullCalendar.Calendar(calendarEl, {
         },
         {
             title: 'Repeating Event',
-            start: '2024-03-07T16:00:00',
+            start: '2024-03-07T05:20:00',
             end: '2024-03-07T17:30:00'
         },
         {
-            title: 'Repeating Event',
-            end: '2024-03-10'
+            title: 'Get-Job Event',
+            start: '2024-03-09'
         },
         {
             title: 'Repeating Event',

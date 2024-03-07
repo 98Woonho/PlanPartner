@@ -31,8 +31,8 @@
         <input type="hidden" id="salt">
         <label>
             <span class="horizontal">
-                <p class="text">이메일</p>
-                <p class="text warning" id="emailWarning"></p>
+                <p>이메일</p>
+                <p class="warning" id="emailWarning"></p>
             </span>
             <span class="horizontal">
                 <input type="email" maxlength="50" name="email" placeholder="이메일 (user@sample.com)" id="email"
@@ -49,8 +49,8 @@
         </label>
         <label>
             <span class="horizontal">
-                <span class="text">이름</span>
-                <span class="text warning" id="nameWarning"></span>
+                <p>이름</p>
+                <p class="warning" id="nameWarning"></p>
             </span>
             <input class="common-field" maxlength="10" name="name" id="name" placeholder="이름" type="text"
                    th:regex="${userRegex.NAME.expression}">
@@ -58,7 +58,7 @@
         </label>
         <label>
             <span class="horizontal">
-                <p class="text">비밀번호</p>
+                <p>비밀번호</p>
             </span>
             <input class="common-field" maxlength="15" name="password" id="password"
                    placeholder="비밀번호 (숫자, 특수문자를 포함한 8~15자)" type="password" th:regex="${userRegex.PASSWORD.expression}">
