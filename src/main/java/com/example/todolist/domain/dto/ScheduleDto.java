@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ScheduleDto {
-    private Long index;
+    private Long id;
     private String title;
     private String startDate;
     private String endDate;

@@ -68,11 +68,12 @@ $("#scheduleAddForm").submit(function (e) {
 
     const formData = $('#scheduleAddForm').serialize();
 
-    axios.post('/schedule', formData)
+    axios.post('/user/schedule', formData)
         .then(res => {
-
+            alert('일정 추가가 완료 되었습니다.');
+            location.href = '/';
         })
         .catch(err => {
-
+            alert('알 수 없는 이유로 일정 추가에 실패 하였습니다. 잠시 후 다시 시도해 주세요.');
         })
 })

@@ -1,7 +1,9 @@
 package com.example.todolist.controller;
 
 import com.example.todolist.domain.dto.EmailAuthDto;
+import com.example.todolist.domain.dto.ScheduleDto;
 import com.example.todolist.domain.dto.UserDto;
+import com.example.todolist.domain.entity.User;
 import com.example.todolist.service.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
@@ -66,5 +68,14 @@ public class UserController {
     @ResponseBody
     public String patchSendMail(EmailAuthDto emailAuthDto) {
         return this.userService.verifyCode(emailAuthDto);
+    }
+
+    @PostMapping("schedule")
+    @ResponseBody
+    public String postSchedule(@SessionAttribute(value = "user") User user,
+                               ScheduleDto scheduleDto) {
+        String result = userService.addSchedule(user, scheduleDto);
+
+        return result;
     }
 }

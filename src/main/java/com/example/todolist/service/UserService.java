@@ -1,10 +1,13 @@
 package com.example.todolist.service;
 
 import com.example.todolist.domain.dto.EmailAuthDto;
+import com.example.todolist.domain.dto.ScheduleDto;
 import com.example.todolist.domain.dto.UserDto;
 import com.example.todolist.domain.entity.EmailAuth;
+import com.example.todolist.domain.entity.Schedule;
 import com.example.todolist.domain.entity.User;
 import com.example.todolist.domain.repository.EmailAuthRepository;
+import com.example.todolist.domain.repository.ScheduleRepository;
 import com.example.todolist.domain.repository.UserRepository;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -42,6 +45,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ScheduleRepository scheduleRepository;
 
     @Transactional(rollbackFor = Exception.class)
     public String sendEmail(EmailAuthDto emailAuthDto) throws NoSuchAlgorithmException, MessagingException {
@@ -133,6 +139,34 @@ public class UserService {
         }
 
         session.setAttribute("user", user);
+
+        return "SUCCESS";
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public String addSchedule(User user, ScheduleDto scheduleDto) {
+        if (scheduleDto.getStartTime() == null || scheduleDto.getEndTime() == null) {
+            Schedule schedule = Schedule.builder()
+                    .title(scheduleDto.getTitle())
+                    .startDate(scheduleDto.getStartDate())
+                    .endDate(scheduleDto.getEndDate())
+                    .user(user)
+                    .build();
+
+            scheduleRepository.save(schedule);
+        } else {
+            String startDate = scheduleDto.getStartDate() + "T" + scheduleDto.getStartTime() + ":00";
+            String endDate = scheduleDto.getEndDate() + "T" + scheduleDto.getEndTime() + ":00";
+
+            Schedule schedule = Schedule.builder()
+                    .title(scheduleDto.getTitle())
+                    .startDate(startDate)
+                    .endDate(endDate)
+                    .user(user)
+                    .build();
+
+            scheduleRepository.save(schedule);
+        }
 
         return "SUCCESS";
     }
