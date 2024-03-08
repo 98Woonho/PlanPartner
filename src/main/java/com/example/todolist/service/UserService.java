@@ -151,28 +151,48 @@ public class UserService {
 
     @Transactional(rollbackFor = Exception.class)
     public String addSchedule(User user, ScheduleDto scheduleDto) {
-        if (scheduleDto.getStartTime() == null || scheduleDto.getEndTime() == null) {
-            Schedule schedule = Schedule.builder()
-                    .title(scheduleDto.getTitle())
-                    .startDate(scheduleDto.getStartDate())
-                    .endDate(scheduleDto.getEndDate())
-                    .user(user)
-                    .build();
+        Schedule schedule = Schedule.builder()
+                .title(scheduleDto.getTitle())
+                .startDate(scheduleDto.getStartDate())
+                .endDate(scheduleDto.getEndDate())
+                .startTime(scheduleDto.getStartTime() != null ? scheduleDto.getStartTime() : "")
+                .endTime(scheduleDto.getEndTime() != null ? scheduleDto.getEndTime() : "")
+                .user(user)
+                .build();
 
-            scheduleRepository.save(schedule);
-        } else {
-            String startDate = scheduleDto.getStartDate() + "T" + scheduleDto.getStartTime() + ":00";
-            String endDate = scheduleDto.getEndDate() + "T" + scheduleDto.getEndTime() + ":00";
+        scheduleRepository.save(schedule);
 
-            Schedule schedule = Schedule.builder()
-                    .title(scheduleDto.getTitle())
-                    .startDate(startDate)
-                    .endDate(endDate)
-                    .user(user)
-                    .build();
+        return "SUCCESS";
+    }
 
-            scheduleRepository.save(schedule);
+    @Transactional(rollbackFor = Exception.class)
+    public String modifySchedule(User user, ScheduleDto scheduleDto) {
+        Schedule schedule = scheduleRepository.findById(scheduleDto.getId()).get();
+
+        if(!schedule.getUser().getEmail().equals(user.getEmail())) {
+            return "ACCOUNT_MISMATCH";
         }
+
+        schedule.setStartDate(scheduleDto.getStartDate());
+        schedule.setStartTime(scheduleDto.getStartTime());
+        schedule.setEndDate(scheduleDto.getEndDate());
+        schedule.setEndTime(scheduleDto.getEndTime());
+        schedule.setTitle(scheduleDto.getTitle());
+
+        scheduleRepository.save(schedule);
+
+        return "SUCCESS";
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public String deleteSchedule(User user, Long id) {
+        Schedule schedule = scheduleRepository.findById(id).get();
+
+        if(!schedule.getUser().getEmail().equals(user.getEmail())) {
+            return "ACCOUNT_MISMATCH";
+        }
+
+        scheduleRepository.deleteById(id);
 
         return "SUCCESS";
     }

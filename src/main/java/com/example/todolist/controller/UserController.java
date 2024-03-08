@@ -86,4 +86,18 @@ public class UserController {
 
         return result;
     }
+
+    @PatchMapping("schedule")
+    @ResponseBody
+    public String patchSchedule(@SessionAttribute(value = "user") User user,
+                                ScheduleDto scheduleDto) {
+        return userService.modifySchedule(user, scheduleDto);
+    }
+
+    @DeleteMapping("schedule")
+    @ResponseBody
+    public String deleteSchedule(@SessionAttribute(value = "user") User user,
+                                 @RequestParam(value = "id") Long id) {
+        return userService.deleteSchedule(user, id);
+    }
 }

@@ -2,3 +2,33 @@
     width: 1200px;
     margin-top: 5rem;
 }
+
+label {
+    gap: 0.35rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#scheduleModifyForm {
+    background-color: #eaecee;
+    width: 400px;
+    padding: 1.25rem;
+    border: 0.0625rem solid #D4D4D4;
+    border-radius: 10px;
+
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#scheduleModifyForm .title {
+    border: unset;
+    background-color: #eaecee;
+    border-bottom: 0.0625rem solid #566573;
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+}
+
+#scheduleModifyForm .title:focus {
+    outline: none;
+}

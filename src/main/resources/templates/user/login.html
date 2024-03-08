@@ -19,23 +19,25 @@
 <th:block th:replace="~{fragments.html :: header}"></th:block>
 
 <main id="main" class="content-container-wrapper">
-    <h1 class="title">로그인</h1>
-    <form id="loginForm"
-          th:with="userRegex = ${T(com.example.todolist.regexes.UserRegex)}">
-        <label>
-            <p class="text">이메일</p>
-            <input type="text" maxlength="50" name="email" placeholder="이메일 (user@sample.com)" id="email"
-                   class="common-field spring" th:regex="${userRegex.EMAIL.expression}">
-            <div></div>
-        </label>
-        <label>
-            <p class="text">비밀번호</p>
-            <input type="password" class="common-field spring" maxlength="15" name="password" id="password"
-                   placeholder="비밀번호 (숫자, 특수문자를 포함한 8~15자)" th:regex="${userRegex.PASSWORD.expression}">
-        </label>
-        <p hidden class="text" id="failText"></p>
-        <input type="submit" value="로그인" class="common-btn login-btn">
-    </form>
+    <div class="content-container">
+        <h1 class="title">로그인</h1>
+        <form id="loginForm"
+              th:with="userRegex = ${T(com.example.todolist.regexes.UserRegex)}">
+            <label>
+                <p class="text">이메일</p>
+                <input type="text" maxlength="50" name="email" placeholder="이메일 (user@sample.com)" id="email"
+                       class="common-field spring" th:regex="${userRegex.EMAIL.expression}">
+                <div></div>
+            </label>
+            <label>
+                <p class="text">비밀번호</p>
+                <input type="password" class="common-field spring" maxlength="15" name="password" id="password"
+                       placeholder="비밀번호 (숫자, 특수문자를 포함한 8~15자)" th:regex="${userRegex.PASSWORD.expression}">
+            </label>
+            <p hidden class="text" id="failText"></p>
+            <input type="submit" value="로그인" class="common-btn login-btn">
+        </form>
+    </div>
 </main>
 
 </body>

@@ -71,6 +71,7 @@ body {
 }
 
 .content-container {
+    margin-top: 5rem;
     max-width: 1000px;
     width: 100%;
 
@@ -107,7 +108,6 @@ body {
 #main .title {
     font-size: 2.5rem;
     font-weight: 700;
-    margin-top: 5rem;
 }
 
 #main .password-warning-container {

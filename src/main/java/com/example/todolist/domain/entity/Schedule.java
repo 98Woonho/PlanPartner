@@ -19,6 +19,8 @@ public class Schedule {
     private String title;
     private String startDate;
     private String endDate;
+    private String startTime;
+    private String endTime;
 
     @ManyToOne
     @JoinColumn(name="user_email", foreignKey = @ForeignKey(name="fk_schedule_user_email", foreignKeyDefinition = "FOREIGN KEY(user_email) REFERENCES user(email) ON DELETE CASCADE ON UPDATE CASCADE"))

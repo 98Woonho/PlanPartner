@@ -16,4 +16,5 @@ public class ScheduleDto {
     private String endDate;
     private String startTime;
     private String endTime;
+    private String email;
 }
