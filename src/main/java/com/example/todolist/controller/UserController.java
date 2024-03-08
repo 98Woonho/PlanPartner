@@ -3,6 +3,7 @@ package com.example.todolist.controller;
 import com.example.todolist.domain.dto.EmailAuthDto;
 import com.example.todolist.domain.dto.ScheduleDto;
 import com.example.todolist.domain.dto.UserDto;
+import com.example.todolist.domain.entity.Schedule;
 import com.example.todolist.domain.entity.User;
 import com.example.todolist.service.UserService;
 import jakarta.mail.MessagingException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -68,6 +70,12 @@ public class UserController {
     @ResponseBody
     public String patchSendMail(EmailAuthDto emailAuthDto) {
         return this.userService.verifyCode(emailAuthDto);
+    }
+
+    @GetMapping("schedule")
+    @ResponseBody
+    public List<Schedule> getSchedule(@SessionAttribute(value = "user") User user) {
+        return userService.getScheduleList(user);
     }
 
     @PostMapping("schedule")

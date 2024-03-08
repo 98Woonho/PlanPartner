@@ -29,6 +29,41 @@ body {
     justify-content: flex-start;
 }
 
+.verticality {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    justify-content: flex-start;
+}
+
+.blur {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(0.25rem);
+    background-color: #17202aa0;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    transition-duration: 250ms;
+    transition-property: opacity;
+    transition-timing-function: ease;
+    z-index: 998;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.blur.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
 .content-container-wrapper {
     display: flex;
     flex-direction: column;

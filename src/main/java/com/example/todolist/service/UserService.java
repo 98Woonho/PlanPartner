@@ -28,6 +28,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -141,6 +142,11 @@ public class UserService {
         session.setAttribute("user", user);
 
         return "SUCCESS";
+    }
+
+    public List<Schedule> getScheduleList(User user) {
+
+        return scheduleRepository.findAllByUserEmail(user.getEmail());
     }
 
     @Transactional(rollbackFor = Exception.class)
