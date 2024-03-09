@@ -17,6 +17,17 @@ body {
     justify-content: flex-start;
 }
 
+input, select, textarea {
+    background-color: inherit;
+    border: none;
+    color: inherit;
+    font: inherit;
+    margin: unset;
+    outline: none;
+    padding: unset;
+    resize: none;
+}
+
 .spring {
     flex: 1;
 }
@@ -71,7 +82,6 @@ body {
 }
 
 .content-container {
-    margin-top: 5rem;
     max-width: 1000px;
     width: 100%;
 
@@ -80,9 +90,39 @@ body {
     align-items: center;
 }
 
+.time-select {
+    background-color: white;
+    border: 0.0625rem solid #cccccc;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
 .logo {
     font-weight: 700;
     font-size: 2rem;
+}
+
+.common-input {
+    border: 0.0625rem solid #c5c5c5;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.common-input:hover,
+.common-input:focus {
+    border: 0.0625rem solid #3498db;
+}
+
+.common-btn {
+    background-color: #ffffff;
+    border: 0.0625rem solid #c5c5c5;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.common-btn:active {
+    background-color: #eaecee;
 }
 
 #header {
@@ -100,6 +140,7 @@ body {
 }
 
 #main {
+    margin: 10rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -120,4 +161,14 @@ body {
 
 #main .password-warning-container.visible {
     max-height: 1.5rem;
+}
+
+#footer {
+    background-color: #d5d8dc;
+    height: 6rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

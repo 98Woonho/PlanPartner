@@ -53,13 +53,19 @@
 
 #joinForm {
     width: 350px;
-    margin: 5rem 0;
+    margin-top: 5rem;
     padding: 1.25rem;
     border: 0.0625rem solid #D4D4D4;
     border-radius: 10px;
 }
 
 label {
+    gap: 0.35rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.email-container {
     gap: 0.35rem;
     display: flex;
     flex-direction: column;
@@ -74,7 +80,7 @@ label {
 }
 
 .email-code-container.visible {
-    max-height: 1.5rem;
+    max-height: 3rem;
 }
 
 .warning {

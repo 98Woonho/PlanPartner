@@ -215,7 +215,7 @@
             <span class="horizontal">
                 <p>시작일</p>
                 <input readonly type="text" id="datepicker1" name="startDate">
-                <select class="common-field" name="startTime" id="startTime">
+                <select class="time-select" name="startTime" id="startTime">
                     <option th:each="time : ${timeList}"
                             th:text="${time}"></option>
                 </select>
@@ -223,7 +223,7 @@
             <span class="horizontal">
                 <p>종료일</p>
                 <input readonly type="text" id="datepicker2" name="endDate">
-                <select class="common-field" name="endTime" id="endTime">
+                <select class="time-select" name="endTime" id="endTime">
                     <option th:each="time : ${timeList}"
                             th:text="${time}"></option>
                 </select>
@@ -246,6 +246,8 @@
 <main id="main" class="content-container-wrapper">
     <div id='calendar'></div>
 </main>
+
+<th:block th:replace="~{fragments.html :: footer}"></th:block>
 
 </body>
 </html>

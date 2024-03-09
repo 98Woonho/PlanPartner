@@ -212,7 +212,7 @@
             <span class="horizontal">
                 <p>시작일</p>
                 <input readonly type="text" id="datepicker1" name="startDate">
-                <select class="common-field" name="startTime" id="startTime">
+                <select class="time-select" name="startTime" id="startTime">
                     <option th:each="time : ${timeList}"
                             th:text="${time}"></option>
                 </select>
@@ -220,7 +220,7 @@
             <span class="horizontal">
                 <p>종료일</p>
                 <input readonly type="text" id="datepicker2" name="endDate">
-                <select class="common-field" name="endTime" id="endTime">
+                <select class="time-select" name="endTime" id="endTime">
                     <option th:each="time : ${timeList}"
                             th:text="${time}"></option>
                 </select>
@@ -240,8 +240,15 @@
 <th:block th:replace="~{fragments.html :: header}"></th:block>
 
 <main id="main" class="content-container-wrapper">
-    <div th:if="${session.user == null}" class="content-container">
-        세션 없을 때
+    <div th:if="${session.user == null}" class="section-container">
+        <section>
+            <h1 class="section-title">일정을 등록 하세요.</h1>
+            <p class="section-text">일정을 등록하여, 나만의 일정 캘린더를 만들어 보세요!</p>
+        </section>
+        <section>
+            <h1 class="section-title">캘린더를 통해 일정을 관리하세요.</h1>
+            <p class="section-text">캘린더에서 간편하게 일정을 수정, 삭제, 관리할 수 있습니다.</p>
+        </section>
     </div>
     <div th:if="${session.user != null}" class="content-container">
         <section class="main-section-1">
@@ -262,6 +269,8 @@
         </section>
     </div>
 </main>
+
+<th:block th:replace="~{fragments.html :: footer}"></th:block>
 
 </body>
 </html>
