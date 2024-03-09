@@ -23,8 +23,6 @@ if ($('meta[name="_user-status"]').attr('content') === 'false') {
                 }
             });
 
-            console.log(events);
-
             const calendarEl = $('#calendar')[0];
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 height: '700px',
@@ -43,42 +41,61 @@ if ($('meta[name="_user-status"]').attr('content') === 'false') {
                 eventClick: function (info) {
                     $('#id').val(info.event._def.publicId);
 
+                    console.log(info.event)
+
                     // 캘린더에서 선택한 일정의 시작일과 종료일
                     const originalStartDateString = info.event._instance.range.start;
                     const originalEndDateString = info.event._instance.range.end;
 
-                    // 한국시로 변환되어 DB에서 넣어준 시작일보다 9시간이 더해져 있기 때문에, 9시간을 빼줌
+
+
                     const originalStartDate = new Date(originalStartDateString);
+                    // 한국시로 변환되어 DB에서 넣어준 시작일보다 9시간이 더해져 있기 때문에, 9시간을 빼줌
                     const adjustedStartDate = new Date(originalStartDate.getTime() - (9 * 60 * 60 * 1000));
                     const startDateString = adjustedStartDate.toString();
 
-                    // 한국시로 변환되어 DB에서 넣어준 종료일보다 9시간이 더해져 있기 때문에, 9시간을 빼줌
+
+
                     const originalEndDate = new Date(originalEndDateString);
-                    const adjustedEndDate = new Date(originalEndDate.getTime() - (9 * 60 * 60 * 1000));
+                    let adjustedEndDate;
+                    if (info.event._def.allDay) {
+                        // 하루종일이 체크 되어있을 때, 종료일이 +9시간에 +24시간이 추가 되어서 event에 저장이 되어서 33시간을 빼줌.
+                        adjustedEndDate = new Date(originalEndDate.getTime() - (33 * 60 * 60 * 1000));
+                    } else {
+                        // 한국시로 변환되어 DB에서 넣어준 종료일보다 9시간이 더해져 있기 때문에, 9시간을 빼줌
+                        adjustedEndDate = new Date(originalEndDate.getTime() - (9 * 60 * 60 * 1000));
+                    }
                     const endDateString = adjustedEndDate.toString();
+
 
                     // Date 객체로 변환
                     const startDateObject = new Date(startDateString);
                     const endDateObject = new Date(endDateString);
 
+
                     // 년도 추출
                     const startYear = startDateObject.getFullYear();
                     const endYear = endDateObject.getFullYear();
+
 
                     // 월 추출
                     const startMonth = (startDateObject.getMonth() + 1).toString().padStart(2, '0');
                     const endMonth = (endDateObject.getMonth() + 1).toString().padStart(2, '0');
 
+
                     // 일 추출
                     const startDay = startDateObject.getDate().toString().padStart(2, '0');
                     const endDay = endDateObject.getDate().toString().padStart(2, '0');
+
 
                     // 원하는 형식으로 변환
                     const startDate = `${startYear}-${startMonth}-${startDay}`;
                     const endDate = `${endYear}-${endMonth}-${endDay}`;
 
+
                     $('#datepicker1').val(startDate);
                     $('#datepicker2').val(endDate);
+
 
                     if (info.event._def.allDay) {
                         $("#allDayCheckBox").prop('checked', true);
@@ -106,11 +123,6 @@ if ($('meta[name="_user-status"]').attr('content') === 'false') {
                     }
 
                     $('#title').val(info.event._def.title);
-
-                    const hours = startDateObject.getHours().toString().padStart(2, '0');
-                    const minutes = startDateObject.getMinutes().toString().padStart(2, '0');
-
-                    const formattedTime = `${hours}:${minutes}`;
 
                     $('#scheduleModify').addClass('visible');
                 },
@@ -150,6 +162,11 @@ if ($('meta[name="_user-status"]').attr('content') === 'false') {
     $('#modifyBtn').on({
         'click': function (e) {
             e.preventDefault();
+
+            if ($('#title').val() === '') {
+                alert('제목을 입력해 주세요.');
+                return false;
+            }
 
             const formData = $('#scheduleModifyForm').serialize();
 

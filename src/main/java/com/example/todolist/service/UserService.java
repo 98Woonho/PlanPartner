@@ -174,10 +174,20 @@ public class UserService {
         }
 
         schedule.setStartDate(scheduleDto.getStartDate());
-        schedule.setStartTime(scheduleDto.getStartTime());
         schedule.setEndDate(scheduleDto.getEndDate());
-        schedule.setEndTime(scheduleDto.getEndTime());
         schedule.setTitle(scheduleDto.getTitle());
+
+        if (scheduleDto.getStartTime() == null || scheduleDto.getEndTime() == null) {
+            schedule.setStartTime("");
+            schedule.setEndTime("");
+
+            scheduleRepository.save(schedule);
+
+            return "SUCCESS";
+        }
+
+        schedule.setStartTime(scheduleDto.getStartTime());
+        schedule.setEndTime(scheduleDto.getEndTime());
 
         scheduleRepository.save(schedule);
 
