@@ -1,2 +1,2 @@
-# 간단한 todo-list
+# 간단한 캘린더 기반 todo-list
 제작 중...
