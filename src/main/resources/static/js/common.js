@@ -30,3 +30,25 @@ $("#datepicker2")
 if (window.location.pathname === "/") {
     $("#datepicker2").datepicker("setDate", new Date());
 }
+
+let isNightMode = localStorage.getItem('nightMode') === 'true';
+
+// 초기 로딩 시 야간 모드 상태에 따라 클래스 추가/제거
+if (isNightMode) {
+    $('body').addClass('dark');
+}
+
+$('#nightModeBtn').on({
+    'click':function(e) {
+        e.preventDefault();
+
+        // 현재 야간 모드 상태 토글
+        isNightMode = !isNightMode;
+
+        // 야간 모드 상태를 로컬 스토리지에 저장
+        localStorage.setItem('nightMode', isNightMode);
+
+        // body에 dark 클래스를 추가/제거
+        $('body').toggleClass('dark');
+    }
+})

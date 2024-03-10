@@ -9,7 +9,7 @@ body {
     min-height: 100vh;
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 400;
 
     align-items: stretch;
     display: flex;
@@ -17,7 +17,7 @@ body {
     justify-content: flex-start;
 }
 
-input, select, textarea {
+input, select, textarea, button {
     background-color: inherit;
     border: none;
     color: inherit;
@@ -26,6 +26,21 @@ input, select, textarea {
     outline: none;
     padding: unset;
     resize: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    background-color: white !important;
+}
+
+body.dark input:-webkit-autofill,
+body.dark input:-webkit-autofill:hover,
+body.dark input:-webkit-autofill:focus,
+body.dark input:-webkit-autofill:active {
+    -webkit-text-fill-color: white;
 }
 
 .spring {
@@ -84,7 +99,7 @@ input, select, textarea {
 .content-container {
     max-width: 1000px;
     width: 100%;
-
+    margin: 10rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -125,9 +140,30 @@ input, select, textarea {
     background-color: #eaecee;
 }
 
+body.dark .common-btn {
+    background-color: black;
+    border: 0.0625rem solid white;
+}
+
+body.dark .common-btn:active {
+    background-color: #2b2b2b;
+}
+
 #header {
     background-color: antiquewhite;
     height: 5rem;
+}
+
+body.dark #header {
+    background-color: #2b2b2b;
+}
+
+body.dark h1,
+body.dark p,
+body.dark input,
+body.dark button,
+body.dark select {
+    color: white;
 }
 
 #header ul {
@@ -139,11 +175,35 @@ input, select, textarea {
     align-items: center;
 }
 
+.text {
+    font-size: 16px;
+}
+
+#header .night-mode-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    cursor: pointer;
+    border: none;
+    background-color: unset;
+}
+
+#header .night-mode-icon {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAt0lEQVR4nNXTPQoCMRCG4RcV/DuCNlbiDWwEEWysLL2BlaXgDRQstdjSK9ipeCMrK9EmMpAihF03mVQOfJAmD5lhAv9SU2CZAtSADDDALAXKLCLppLRjnNS10N2DuhqkDXw8aKGBBh4iuWmgfg4kmcdCrZzWJE9gGItdC171AtZAIxSaFEDG5gGcgA2wAna/du1Yghkn+7IvcghAtkAlpM0xcAHezmU5n4FR6KzcatrV6AFVDRBdX3MQTQIMX0DIAAAAAElFTkSuQmCC");
+    width: 18px;
+    height: 18px;
+    margin-bottom: 0.1rem;
+}
+
 #main {
-    margin: 10rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+body.dark #main {
+    background-color: black;
 }
 
 #main .title {
@@ -164,11 +224,15 @@ input, select, textarea {
 }
 
 #footer {
-    background-color: #d5d8dc;
+    background-color: antiquewhite;
     height: 6rem;
     display: flex;
     gap: 1.5rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+body.dark #footer {
+    background-color: #2b2b2b;
 }

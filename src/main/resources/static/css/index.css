@@ -1,4 +1,6 @@
 .section-container {
+    margin: 10rem 0;
+
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -47,6 +49,10 @@ label {
     flex-direction: column;
 }
 
+body.dark #scheduleAddForm {
+    background-color: black;
+}
+
 #scheduleAddForm .title {
     border: unset;
     background-color: #eaecee;
@@ -57,6 +63,14 @@ label {
 
 #scheduleAddForm .title:focus {
     outline: none;
+}
+
+body.dark #scheduleAddForm .title {
+    background-color: black;
+}
+
+body.dark .time-select {
+    background-color: black;
 }
 
 .button-container {
@@ -74,8 +88,17 @@ label {
     height: 150px;
 }
 
+body.dark .button-container a {
+    border: 0.0625rem solid #2b2b2b;
+    background-color: #566573;
+}
+
 .button-container a:hover {
     background-color: #F2F2F2;
+}
+
+body.dark .button-container a:hover {
+    background-color: #2c3e50;
 }
 
 .button-container a img {

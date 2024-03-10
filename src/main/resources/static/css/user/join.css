@@ -57,6 +57,10 @@
     padding: 1.25rem;
     border: 0.0625rem solid #D4D4D4;
     border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 label {
@@ -84,14 +88,9 @@ label {
 }
 
 .warning {
-    color: #ED5353;
+    color: #ED5353 !important;
 }
 
 .verified {
-    color: #3ED43D;
-}
-
-.join-btn {
-    float: right;
-    margin-top: 0.25rem;
+    color: #3ED43D !important;
 }

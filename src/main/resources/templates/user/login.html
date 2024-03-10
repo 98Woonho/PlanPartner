@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/user/login.css">
 
+    <script defer src="/js/common.js"></script>
     <script defer src="/js/user/login.js"></script>
 </head>
 <body>
@@ -34,8 +35,8 @@
                 <input type="password" class="common-input spring" maxlength="15" name="password" id="password"
                        placeholder="비밀번호 (숫자, 특수문자를 포함한 8~15자)" th:regex="${userRegex.PASSWORD.expression}">
             </label>
-            <p hidden class="text" id="failText"></p>
-            <input type="submit" value="로그인" class="common-btn login-btn">
+            <p hidden class="fail-text" id="failText"></p>
+            <input type="submit" value="로그인" class="common-btn">
         </form>
     </div>
 </main>

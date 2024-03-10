@@ -1,6 +1,6 @@
 #calendar {
     width: 1200px;
-    margin-top: 5rem;
+    margin: 10rem 0;
 }
 
 label {
@@ -21,6 +21,10 @@ label {
     flex-direction: column;
 }
 
+body.dark #scheduleModifyForm {
+    background-color: black;
+}
+
 #scheduleModifyForm .title {
     border: unset;
     background-color: #eaecee;
@@ -31,4 +35,45 @@ label {
 
 #scheduleModifyForm .title:focus {
     outline: none;
+}
+
+body.dark #scheduleModifyForm .title {
+    background-color: black;
+}
+
+body.dark .time-select {
+    background-color: black;
+}
+
+
+
+:root {
+    --fc-list-event-hover-bg-color: initial;
+}
+
+.fc-event {
+    cursor: pointer;
+}
+
+body.dark .fc-col-header-cell-cushion,
+body.dark .fc-daygrid-day-number,
+body.dark .fc-event-time,
+body.dark .fc-event-title,
+body.dark .fc-toolbar-title,
+body.dark .fc-scrollgrid-shrink-cushion,
+body.dark .fc-event {
+    color: white !important;
+}
+
+.fc-list-event:hover {
+    background-color: #f5f5f5;
+}
+
+body.dark .fc-list-event:hover {
+    background-color: #2b2b2b;
+}
+
+body.dark .fc-list-day-cushion {
+    background-color: #2b2b2b !important;
+    color: white;
 }

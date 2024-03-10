@@ -34,13 +34,25 @@
         </li>
         <li class="spring"></li>
         <li th:if="${session.user == null}">
-            <a href="/user/login">로그인</a>
+            <a href="/user/login">
+                <p class="text">로그인</p>
+            </a>
         </li>
         <li th:if="${session.user == null}">
-            <a href="/user/join">회원가입</a>
+            <a href="/user/join">
+                <p class="text">회원가입</p>
+            </a>
         </li>
         <li th:if="${session.user != null}">
-            <a href="/user/logout">로그아웃</a>
+            <a href="/user/logout">
+                <p class="text">로그아웃</p>
+            </a>
+        </li>
+        <li>
+            <button class="night-mode-btn" id="nightModeBtn">
+                <span class="night-mode-icon"></span>
+                <p class="text">야간모드</p>
+            </button>
         </li>
     </ul>
 </header>
@@ -49,7 +61,7 @@
     <h1 class="logo">
         <a href="/">PlanPartner</a>
     </h1>
-    <p>&copy; 2024 PlanPartner All Rights Reserved.</p>
+    <p class="text">&copy; 2024 PlanPartner All Rights Reserved.</p>
 </footer>
 
 </body>
