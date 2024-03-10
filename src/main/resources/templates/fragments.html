@@ -17,7 +17,52 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!--  datepicker -->
+    <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css"
+          rel="stylesheet">
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </th:block>
+
+<header id="header" class="content-container-wrapper" th:fragment="header">
+    <ul>
+        <li>
+            <h1 class="logo">
+                <a href="/">PlanPartner</a>
+            </h1>
+        </li>
+        <li class="spring"></li>
+        <li th:if="${session.user == null}">
+            <a href="/user/login">
+                <p class="text">로그인</p>
+            </a>
+        </li>
+        <li th:if="${session.user == null}">
+            <a href="/user/join">
+                <p class="text">회원가입</p>
+            </a>
+        </li>
+        <li th:if="${session.user != null}">
+            <a href="/user/logout">
+                <p class="text">로그아웃</p>
+            </a>
+        </li>
+        <li>
+            <button class="night-mode-btn" id="nightModeBtn">
+                <span class="night-mode-icon"></span>
+                <p class="text">야간모드</p>
+            </button>
+        </li>
+    </ul>
+</header>
+
+<footer class="content-container-wrapper" id="footer" th:fragment="footer">
+    <h1 class="logo">
+        <a href="/">PlanPartner</a>
+    </h1>
+    <p class="text">&copy; 2024 PlanPartner All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>

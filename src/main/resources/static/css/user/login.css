@@ -1,0 +1,27 @@
+#loginForm {
+    width: 250px;
+    margin-top: 5rem;
+    padding: 1.25rem;
+    border: 0.0625rem solid #D4D4D4;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.fail-text {
+    margin-top: 0.5rem;
+    text-align: center;
+    background-color: #FCC2C2;
+    border: 0.0625rem solid #EDB6B6;
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    color: red !important;
+}
+
+label {
+    gap: 0.35rem;
+    display: flex;
+    flex-direction: column;
+}

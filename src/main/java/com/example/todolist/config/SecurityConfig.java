@@ -16,33 +16,15 @@ public class SecurityConfig {
     public SecurityFilterChain config(HttpSecurity http) throws Exception {
 
         //CSRF 비활성화
-        http.csrf(
-                (config) -> {
+        http.csrf(config -> {
                     config.disable();
                 }
         );
 
-        //요청 URL별 접근 제한
-        http.authorizeHttpRequests(
-                authorize -> {
-                    authorize.requestMatchers("/**").permitAll();
-                    authorize.anyRequest().authenticated();
-                }
-        );
         //로그인
         http.formLogin(login -> {
-            login.permitAll();
-            login.loginPage("/user/login");
-
+            login.disable();
         });
-
-        //로그아웃
-        http.logout(
-                (logout) -> {
-                    logout.permitAll();
-                    logout.logoutUrl("/logout");
-                }
-        );
 
         return http.build();
     }

@@ -5,15 +5,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>홈페이지</title>
+    <meta name="_user-status" th:content="${session.user != null}">
+    <title>캘린더</title>
 
     <th:block th:insert="~{fragments.html :: cdns}"></th:block>
 
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/calendar.css">
 
     <script defer src="/js/common.js"></script>
-    <script defer src="/js/index.js"></script>
+    <script defer src="/js/calendar.js"></script>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
 
     <!-- datepicker style -->
     <style>
@@ -199,18 +202,18 @@
             background-color: #eee;
         }
     </style>
-
 </head>
 <body>
 
-<div id="scheduleAdd" class="blur">
-    <form id="scheduleAddForm">
+<div id="scheduleModify" class="blur">
+    <form id="scheduleModifyForm">
+        <input type="hidden" id="id" name="id">
         <label>
             <input type="text" name="title" id="title" placeholder="제목" class="title spring">
         </label>
         <label>
             <span class="horizontal">
-                <p class="text">시작일</p>
+                <p>시작일</p>
                 <input readonly type="text" id="datepicker1" name="startDate">
                 <select class="time-select" name="startTime" id="startTime">
                     <option th:each="time : ${timeList}"
@@ -218,7 +221,7 @@
                 </select>
             </span>
             <span class="horizontal">
-                <p class="text">종료일</p>
+                <p>종료일</p>
                 <input readonly type="text" id="datepicker2" name="endDate">
                 <select class="time-select" name="endTime" id="endTime">
                     <option th:each="time : ${timeList}"
@@ -228,49 +231,20 @@
         </label>
         <label>
             <span class="horizontal">
-                <p class="text">하루종일</p>
+                <p>하루종일</p>
                 <input type="checkbox" id="allDayCheckBox">
             </span>
         </label>
 
-        <input type="submit" value="추가" class="common-btn">
+        <button id="modifyBtn" class="common-btn modify-btn">수정</button>
+        <button id="deleteBtn" class="common-btn delete-btn">삭제</button>
     </form>
 </div>
 
 <th:block th:replace="~{fragments.html :: header}"></th:block>
 
 <main id="main" class="content-container-wrapper">
-    <div th:if="${session.user == null}" class="section-container">
-        <section>
-            <h1 class="section-title">일정을 등록 하세요.</h1>
-            <p class="section-text">일정을 등록하여, 나만의 일정 캘린더를 만들어 보세요!</p>
-        </section>
-        <section>
-            <h1 class="section-title">캘린더를 통해 일정을 관리하세요.</h1>
-            <p class="section-text">캘린더에서 간편하게 일정을 수정, 삭제, 관리할 수 있습니다.</p>
-        </section>
-        <a href="/user/login">
-            <button class="common-btn login-btn">로그인하러 가기</button>
-        </a>
-    </div>
-    <div th:if="${session.user != null}" class="content-container">
-        <section class="main-section-1">
-            <div class="button-container">
-                <div class="verticality">
-                    <a href="javascript:void(0)" onclick="scheduleAdd()">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAABLCAYAAAA4TnrqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA2UlEQVR4nO3cOwrCUBBA0Vm2y8lSXEj2ogSsJILXIkQ9B6Z51cslvyJkBgA4j8vMXHdmW+fJMjO3ndnWeSJWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViDWv8S6PDZ61KwvYq0H7+OjbyuuLzZ/+/HZjlusEWucWeMynJ+9Z3kantjyze9ZR1vEep9YgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgViBWIFYgb8cAcCc3R0ZxuQG2qRgNwAAAABJRU5ErkJggg==">
-                    </a>
-                    <p>일정 추가</p>
-                </div>
-                <div class="verticality">
-                    <a href="/calendar">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAADiUlEQVR4nO2dTYhNYRjH/zHKxIqkKEOYLFwbFmzYzNZm7sZIOYobCxILUfJRmgUppVBqFCFRPhZWYrJgYTFEvpquYqHpJuUjDEan7kLTed6Zczr3Ps95zv9Xz+597vu87+98vO+5XwAhhBBCCCGEEEIIIURiO4B9CVFRnLKKUFNcq3vqAMYSIlKsKRJqimt1D4W0kG4AtZTREI7GgQyvlVcMCDU1MrxWPCfmTvUyR0QhUJdAIdCfeAqB/mRTCPQn2IWQUQDDQowKOSOBnFbHSI7jMCmkXoJ9SN3gONwMJHIyDjcDiZyMo9TPgOoUYgsKMUahhISWi15itEhCyhwRhUBdAoVAf+IpBPqTTSHQn2AXQrK89VkrWDSKJIQ7dSUoBDxDrFConXoZLlnvLArZKhT1Bv75YFHIDqGoF4GcvpQfMOsW2vcp9/HRopBdQlFDOV57owyXxXb08cmikL1CUY9LIOSrRSFHhKLuOhcyDcBfi0JOCUVddS5kjtBeXcgFoahzzoUssSrktlDUoUDOoPAOXFVoXxXaDyr2sdqqkKdCUVvgmw1WhXwWiuqBb/ZbFDIrUNRi+OasRSFrhIK+AJgC3zy0KGS3UNAj+GZqYFOoKuRShiWvB5YHZKgKeSsUtEloPx3Ac2F5GS8jpWdlSe2v5NhHXk+4VYUsDRQ0X8jpFdrHX5bpEHKeCTk7c+wjLTctCjkgFPMykHNNyDkttF8mtP8DYF5OfaSlc4L7h5qQJ0IxJ4T2MwF8E3LWCjlHhfb3cuwjLesnkKEipBJ40rlSyNkotH8fWCK/FnK25dhHWm5ZFCKtrl4Fcu4IOceF9quE9r8AzM6pj7QsAvDbmpCu5qQkFRLfVyQi4S3ShYGzsJYQ1Rz7SMvJSchou5Dzgd15/CjFK12B+5OakHWBe0d89Hjm+iRltE1IZ2Aj+APAAvilJ4WMtgk5EyjgGPwyt7lKMyVkT6DzuNgZ8EkHgAcpZbRcSG9zZyx1fsPA1wJqLYqLgXH/bC5k2iokvnZ+z3CElCEOanzY+r6BgY8ZjKHm57IoBPoy4ivGiuYBSyHQF7L5vysIhUBXxuFxl/S2C7ncol9iK2L0J8wPv0FlDAoxBoUYg0KMQSHGoBBjFEqIt2XvcELwF+VQjDB5hpQ5IgqBugQKgf7EUwj0J9u8kCx/CuY9ujWFEEIIIYQQQgghhBBCCCEE4/kHNDqb98XjReMAAAAASUVORK5CYII=">
-                    </a>
-                    <p>캘린더</p>
-                </div>
-            </div>
-        </section>
-    </div>
+    <div id='calendar'></div>
 </main>
 
 <th:block th:replace="~{fragments.html :: footer}"></th:block>

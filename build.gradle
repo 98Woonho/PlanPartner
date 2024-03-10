@@ -39,6 +39,12 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	runtimeOnly 'com.mysql:mysql-connector-j'
+
+	implementation 'org.apache.commons:commons-lang3:3.14.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	implementation group: 'org.json', name: 'json', version: '20231013'
 }
 
 tasks.named('bootBuildImage') {
