@@ -15,8 +15,8 @@ https://www.youtube.com/watch?v=vT2kyL59_hA
 ##### Mysql Server
 ##### Mysql Workbench
 
-## ▶️ 사용 API
-##### FullCalendar API
+## ▶️ 사용 Library
+##### FullCalendar
 
 <br/>
 
