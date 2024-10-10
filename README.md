@@ -1,4 +1,4 @@
-# fullcalendar API를 활용한 todo-list
+# fullcalendar API를 활용한 todo-list PlanPartner
 
 ## ▶️ ERD
 ![스크린샷 2024-03-10 005541](https://github.com/98Woonho/todo-list/assets/145889732/2b6791eb-4b8c-4bbb-bcc7-f66c80eaf7c5)
